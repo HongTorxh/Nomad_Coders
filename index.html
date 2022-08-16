@@ -14,16 +14,29 @@
     const root = document.getElementById("root");
     function App() {
         //  소문자 대문자 구분이 매우 중요하다. 
-        const [counter, setCounter] = React.useState(0);
-        const onClick = () => {
-            // setCounter(counter+1); 
-            setCounter((current) => current+1); // current가 현재값이란 것을 보장
-
+        const [minutes, setMinutes] = React.useState();
+        const onChange = (event) => {
+            setMinutes(event.target.value);
         }
+        const [hours, setHours] = React.useState();
         return (
-            <div>
-                <h3>Total clicks: {counter}</h3> 
-                <button onClick={onClick}>Click me</button>
+            <div> 
+                <h1 class= "hi">Super Converter</h1>
+                <label htmlFor="minutes">Minutes</label>
+                <input
+                    value = {minutes}
+                    id="minutes"
+                    plcaeholder="Minutes"
+                    type="number"
+                    onChange={onChange}
+                />
+                <h4>You want to Convert {minutes}</h4>
+                <label htmlFor="hours">Hours</label>
+                <input
+                    value = {hours}
+                    id="hours"
+                    plcaeholder="Hours"
+                    type="number" />
             </div>
         );
     }
@@ -33,7 +46,7 @@
     // const h3 = React.createElement(
     //     "h3", {
     //     onMouseEnter: () => console.log('mouse enter'),
-    // }, 
+    // },
     // "Hello I'm a span"
     // );
     // ReactJS의 Power, interactive한 어플리케이션에서 하는 작업들 모두가 event들을 감지하는 일
@@ -41,7 +54,7 @@
     // const btn = React.createElement("button", {
     //     onClick: () => console.log('im clicked'),
     // }, "Click me");
- 
+
 </script>
 
 </html>
