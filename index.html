@@ -14,29 +14,36 @@
     const root = document.getElementById("root");
     function App() {
         //  소문자 대문자 구분이 매우 중요하다. 
-        const [minutes, setMinutes] = React.useState();
+        const [minutes, setMinutes] = React.useState(0);
         const onChange = (event) => {
             setMinutes(event.target.value);
         }
-        const [hours, setHours] = React.useState();
+        const reset = () => {
+            setMinutes(0);
+        }
         return (
-            <div> 
-                <h1 class= "hi">Super Converter</h1>
-                <label htmlFor="minutes">Minutes</label>
-                <input
-                    value = {minutes}
-                    id="minutes"
-                    plcaeholder="Minutes"
-                    type="number"
-                    onChange={onChange}
-                />
-                <h4>You want to Convert {minutes}</h4>
-                <label htmlFor="hours">Hours</label>
-                <input
-                    value = {hours}
-                    id="hours"
-                    plcaeholder="Hours"
-                    type="number" />
+            <div>
+                <h1 class="hi">Super Converter</h1>
+                <div>
+                    <label htmlFor="minutes">Minutes</label>
+                    <input
+                        value={minutes}
+                        id="minutes"
+                        plcaeholder="Minutes"
+                        type="number"
+                        onChange={onChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="hours">Hours</label>
+                    <input
+                        value={Math.round(minutes/60)}
+                        id="hours"
+                        plcaeholder="Hours"
+                        type="number"
+                    />
+                </div>
+                <button onClick={reset}>Reset</button>
             </div>
         );
     }
