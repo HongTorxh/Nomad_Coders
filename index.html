@@ -16,7 +16,9 @@
         //  소문자 대문자 구분이 매우 중요하다. 
         const [counter, setCounter] = React.useState(0);
         const onClick = () => {
-            setCounter(counter+1); 
+            // setCounter(counter+1); 
+            setCounter((current) => current+1); // current가 현재값이란 것을 보장
+
         }
         return (
             <div>
