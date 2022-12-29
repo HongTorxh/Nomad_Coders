@@ -1,4 +1,4 @@
-# 👊 노마드코더를 보고 공부하는 일기장 👊
+<h1 align = "center">👊 노마드코더를 보고 공부하는 일기장 👊 </h1>
 
 <h3 align = "center"><strong> 🔨 Tech Stack 🔧 </strong></h3>
 
