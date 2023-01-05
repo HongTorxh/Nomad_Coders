@@ -1,3 +1,8 @@
+const fontSize = document.getElementById("font-size");
+const fontType = document.getElementById("font-type");
+const saveBtn = document.getElementById("save");
+const textInput = document.getElementById("text");
+const fileInput = document.getElementById("file");
 const modeBtn = document.getElementById("mode-btn");
 const destroyBtn = document.getElementById("destroy-btn");
 const eraserBtn = document.getElementById("eraser-btn");
@@ -15,8 +20,10 @@ const CANVAS_HEIGHT = 800;
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 ctx.lineWidth = lineWidth.value;
+ctx.lineCap = "round";
 let isPainting = false;
 let isFilling = false;
+
 
 function onMove(event){
     if(isPainting){
@@ -78,6 +85,37 @@ function onEraserClick(){
     modeBtn.innerText = "Fill";
 }
 
+function onFileChange(event){
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    const image = new Image();
+    image.src = url;
+    image.onload = function(){
+        ctx.drawImage(image, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        fileInput.value = null;
+    } 
+}
+
+function onDoubleClick(event){ 
+    ctx.save();
+    const text = textInput.value;
+    const textType = fontType.value;
+    const textSize = fontSize.value;
+    ctx.lineWidth = 1;
+    ctx.font = `${textSize}px ${textType}`;
+    console.log(textType);
+    ctx.fillText(text, event.offsetX, event.offsetY);
+    ctx.restore(); 
+}
+function onSaveClick(){
+    const url = canvas.toDataURL();
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "myDrawing.png";
+    a.click();
+}
+
+canvas.addEventListener("dblclick", onDoubleClick);
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
 canvas.addEventListener("mouseup", canclePainting);
@@ -90,3 +128,6 @@ colorOptions.forEach((color) => color.addEventListener("click", onColorClick));
 modeBtn.addEventListener("click", onModeClick);
 destroyBtn.addEventListener("click", onDestroyClick);
 eraserBtn.addEventListener("click", onEraserClick);
+fileInput.addEventListener("change", onFileChange);
+saveBtn.addEventListener("click", onSaveClick);
+// fontType.addEventListener("click", )
