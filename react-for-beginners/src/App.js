@@ -1,51 +1,30 @@
-import styles from "./App.module.css";
-import { useState, useEffect } from "react";
-
-function Hello(){
-  function byFn(){
-    console.log("bye :(");
-  }
-  function hiFn(){
-    console.log("created :)");
-    return byFn;
-  }
-  useEffect(hiFn, []);
-  return <h1>Hello</h1>;
-}
-
+import { useState } from "react";
 
 function App() {
-  const [counter, setValue] = useState(0);
-  const [keyword, setKeyword] = useState("");
-  const [showing, setShowing] = useState(false);
-  const onClick = () => setValue((prev) => prev + 1);
-  const onChange = (event) => setKeyword(event.target.value);
-  const onClickShowing = () => setShowing((prev) => !prev);
-  useEffect(() => {
-    console.log("I run only once.");
-  }, []);
-  useEffect(() => {
-    console.log("I run when 'keyword' changes.");
-  }, [keyword]);
-  useEffect(() => {
-    console.log("I run when 'counter' changes.");
-  }, [counter]);
-  useEffect(() => {
-    console.log("I run when keyword & counter changes.");
-  }, [keyword, counter]);
+  const [toDo, setToDo] = useState("");
+  const [toDos, setToDos] = useState([]);
+  const onChange = (event) => setToDo(event.target.value);
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (toDo === "") {
+      return;
+    }
+    setToDos((currentArray) => [toDo, ...currentArray]);
+    setToDo("");
+  };
+  console.log(toDos);
   return (
     <div>
-      <input 
-        value={keyword}
-        onChange={onChange}
-        type="text"
-        placeholder="Search here..." />
-      <h1 className={styles.title}>
-        {counter}
-      </h1>
-      <button onClick={onClick}>click me</button>
-      <button onClick={onClickShowing}>{showing ? "Hide" : "Show"}</button>
-      {showing ? <Hello /> : null}
+      <h1>My To ToDos ({toDos.length})</h1>
+      <form onSubmit={onSubmit}>
+        <input
+          onChange={onChange}
+          value={toDo}
+          type="text"
+          placeholder="Write your to do..."
+        />
+        <button> Add To Do</button>
+      </form>
     </div>
   );
 }
