@@ -38,9 +38,27 @@
 
 import { useEffect, useState } from "react";
 
+function Converter({ coin }) {
+  return (
+    <div>
+      <label htmlFor="km">Km : </label>
+    </div>
+  );
+}
+
 function App() {
   const [loading, setLoading] = useState(true);
   const [coins, setCoins] = useState([]);
+  const [index, setIndex] = useState("-1");
+  const [selected, setSelected] = useState([]);
+  function onSelect(event) {
+    setIndex(event.target.value);
+    if (event.target.value === "-1") {
+      setSelected([]);
+    } else {
+      setSelected(coins[event.target.value]);
+    }
+  }
   useEffect(() => {
     fetch("https://api.coinpaprika.com/v1/tickers")
       .then((response) => response.json())
@@ -55,16 +73,15 @@ function App() {
       {loading ? (
         <strong>Loading...</strong>
       ) : (
-        <select>
+        <select value={index} onChange={onSelect}>
           {coins.map((coin) => (
-            <option>
-              {coin.name} ({coin.symbol}) : {coin.quotes.USD.price} USD
+            <option value={coin.rank}>
+              {coin.name} ({coin.symbol})
             </option>
           ))}
         </select>
       )}
-      <input type="text" placeholder="Write here USD"></input>
-      <input type="disabled"></input>
+      {selected === "-1" ? "Please Select Coin" : <Converter coin={selected} />}
     </div>
   );
 }
