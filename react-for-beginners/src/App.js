@@ -47,6 +47,7 @@ function App() {
     setCost(event.target.value);
   };
   const handleInput = (event) => {
+    console.log(event);
     setNeed(event.target.value);
   };
 
@@ -84,7 +85,7 @@ function App() {
           onChange={handleInput}
           placeholde="dollar"
         ></input>
-        <p>{need / cost}</p>
+        <p> 달러당 비트코인 : {need / cost}</p>
       </div>
     </div>
   );
