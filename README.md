@@ -16,7 +16,7 @@
     <strong> 공부장 </strong>
 </h3>
 <div align="center">
-<a herf="https://decisive-magnolia-8c3.notion.site/VanillaJS_Paint-934541835086409f93ae963ef8ff4e93">VanillaJs_Paint</a>
+<a href="https://decisive-magnolia-8c3.notion.site/VanillaJS_Paint-934541835086409f93ae963ef8ff4e93">VanillaJs_Paint</a>
 <br />
-<a herf="https://decisive-magnolia-8c3.notion.site/ReactJS_Movie-WebService-d2953700661a4de2ad792d8d95776c03">ReactJS_Movie-WebService</a>
+<a href="https://decisive-magnolia-8c3.notion.site/ReactJS_Movie-WebService-d2953700661a4de2ad792d8d95776c03">ReactJS_Movie-WebService</a>
 </div>
