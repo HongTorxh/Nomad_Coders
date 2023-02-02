@@ -24,6 +24,7 @@ function Detail() {
         <div>
           <img src={movie.medium_cover_image} alt={movie.title}></img>
           <h2> Title : {movie.title}</h2>
+          <p> {movie.description_full}</p>
           <h3> Movie Genres</h3>
           <ul>
             {movie.genres.map((g) => (
